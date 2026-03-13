@@ -1,4 +1,5 @@
 from playwright.sync_api import sync_playwright
+from dotenv import load_dotenv
 import re
 import json
 import os
@@ -6,20 +7,18 @@ import requests
 import csv
 from datetime import datetime
 
-# 🔹 Telegram config
-BOT_TOKEN = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-CHAT_ID = "xxxxxxxxxxxxxxx"
+load_dotenv()
+
+BOT_TOKEN = os.getenv("TELEGRAM_TOKEN")
+CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
+URL = os.getenv("PRODUCT_URL")
+THRESHOLD = float(os.getenv("PRICE_THRESHOLD"))
 
 PRODUCTS = [
     {
         "name": "Samsung S24",
-        "url": "https://www.flipkart.com/samsung-galaxy-s24-5g-snapdragon-marble-gray-128-gb/p/itm8f6413060b707",
-        "threshold": 43000
-    },
-    {
-        "name": "Pixel 9a",
-        "url": "https://www.flipkart.com/google-pixel-9a-porcelain-256-gb/p/itmfe749ceddac9a",
-        "threshold": 38000
+        "url": URL ,
+        "threshold": THRESHOLD 
     },
 ]
 
